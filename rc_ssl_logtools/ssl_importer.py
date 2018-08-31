@@ -13,7 +13,7 @@ from google.protobuf.message import DecodeError
 #  from proto import messages_robocup_ssl_wrapper_pb2
 #  import .proto.messages_robocup_ssl_wrapper_pb2
 
-from rcssl_vis.proto import messages_robocup_ssl_wrapper_pb2
+from rc_ssl_logtools.proto import messages_robocup_ssl_wrapper_pb2
 
 # From http://wiki.robocup.org/Small_Size_League/Game_Logs
 MESSAGE_BLANK = 0  # (ignore message)
