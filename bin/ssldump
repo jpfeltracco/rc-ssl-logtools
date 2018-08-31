@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+
+import sys
+import argparse
+
+import rcssl_vis
+
+parser = argparse.ArgumentParser(description='Parse protobuf messages out of a log')
+parser.add_argument('file', type=str, help='time to start')
+parser.add_argument('-s', '--start-time', type=float, help='time to recording (sec)')
+parser.add_argument('-d', '--duration', type=float, help='duration of recording (sec)')
+
+args = parser.parse_args()
+
+frames = rcssl_vis.log_frames(args.file, args.start_time, args.duration)
+
+for f in frames:
+    print(f)
