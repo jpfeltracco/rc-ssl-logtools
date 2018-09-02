@@ -44,7 +44,7 @@ if __name__ == "__main__":
 
     setuptools.setup(
         name="rc_ssl_logtools",
-        version="0.0.1",
+        version="0.0.2",
         author="Jeremy Feltracco",
         author_email="jpfeltracco@gmail.com",
         description="Tools to convert SSL logs to usable Python formats",
@@ -59,7 +59,7 @@ if __name__ == "__main__":
         scripts=["bin/ssldump"],
         long_description=long_description,
         long_description_content_type="text/markdown",
-        url="https://github.com/RoboJackets/robocup-analysis",
+        url="https://github.com/jpfeltracco/rc-ssl-logtools",
         packages=['rc_ssl_logtools', 'rc_ssl_logtools.proto'],
         classifiers=[
             "Programming Language :: Python :: 3",
