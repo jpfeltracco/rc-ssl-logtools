@@ -1,6 +1,6 @@
 syntax = "proto2";
-import "rcssl_vis/proto/messages_robocup_ssl_detection.proto";
-import "rcssl_vis/proto/messages_robocup_ssl_geometry.proto";
+import "rc_ssl_logtools/proto/messages_robocup_ssl_detection.proto";
+import "rc_ssl_logtools/proto/messages_robocup_ssl_geometry.proto";
 
 message SSL_WrapperPacket {
   optional SSL_DetectionFrame detection = 1;

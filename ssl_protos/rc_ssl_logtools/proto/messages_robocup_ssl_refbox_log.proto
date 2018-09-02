@@ -1,5 +1,5 @@
 syntax = "proto2";
-import "rcssl_vis/proto/messages_robocup_ssl_detection.proto";
+import "rc_ssl_logtools/proto/messages_robocup_ssl_detection.proto";
 
 message Log_Frame
 {

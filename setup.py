@@ -15,11 +15,11 @@ def gen_proto():
     # note: protoc will create necessary sub dirs to go into proto dir
     gen_path = package_root_path
 
-    proto_paths = glob.glob(os.path.join(proto_path, "rcssl_vis/proto/*.proto"))
-    proto_paths = glob.glob("ssl_protos/rcssl_vis/proto/*.proto")
+    proto_paths = glob.glob(os.path.join(proto_path, "rc_ssl_logtools/proto/*.proto"))
+    proto_paths = glob.glob("ssl_protos/rc_ssl_logtools/proto/*.proto")
 
     # get only the literal file names, ie "messages_robocup_ssl_geometry.proto"
-    proto_filenames = ["rcssl_vis/proto/" + os.path.split(path)[1] for path in proto_paths]
+    proto_filenames = ["rc_ssl_logtools/proto/" + os.path.split(path)[1] for path in proto_paths]
 
     # turn into space separated list of proto files
     proto_str_list = " ".join(proto_filenames)
@@ -43,7 +43,7 @@ if __name__ == "__main__":
         long_description = fh.read()
 
     setuptools.setup(
-        name="rcssl_vis",
+        name="rc_ssl_logtools",
         version="0.0.1",
         author="Jeremy Feltracco",
         author_email="jpfeltracco@gmail.com",
@@ -60,7 +60,7 @@ if __name__ == "__main__":
         long_description=long_description,
         long_description_content_type="text/markdown",
         url="https://github.com/RoboJackets/robocup-analysis",
-        packages=['rcssl_vis', 'rcssl_vis.proto'],
+        packages=['rc_ssl_logtools', 'rc_ssl_logtools.proto'],
         classifiers=[
             "Programming Language :: Python :: 3",
             "License :: OSI Approved :: MIT License",
