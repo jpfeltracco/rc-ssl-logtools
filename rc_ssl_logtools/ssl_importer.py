@@ -64,6 +64,10 @@ def log_frames(ssl_log, start_time=None, duration=None):
     frames = []
 
     while  ind < len(decomp):
+        if (ind + msg_header_st_sz) >= len(decomp):
+            break
+
+        byte_arr = decomp[ind:ind+msg_header_st_sz]
         ts, tp, sz = msg_header_st.unpack(decomp[ind:ind+msg_header_st_sz])
         ind += msg_header_st_sz
 
@@ -72,6 +76,9 @@ def log_frames(ssl_log, start_time=None, duration=None):
 
         if ts_init is None:
             ts_init = ts
+
+        if (ind + sz) >= len(decomp):
+            break
 
         msg_str = decomp[ind:ind+sz]
         ind += sz
