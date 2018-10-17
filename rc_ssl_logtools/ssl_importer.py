@@ -1,4 +1,3 @@
-import pandas as pd
 import gzip as gz
 import zlib
 import sys
@@ -9,9 +8,6 @@ import copy
 from collections import OrderedDict
 
 from google.protobuf.message import DecodeError
-
-#  from proto import messages_robocup_ssl_wrapper_pb2
-#  import .proto.messages_robocup_ssl_wrapper_pb2
 
 from rc_ssl_logtools.proto import messages_robocup_ssl_wrapper_pb2
 
@@ -67,7 +63,6 @@ def log_frames(ssl_log, start_time=None, duration=None):
         if (ind + msg_header_st_sz) >= len(decomp):
             break
 
-        byte_arr = decomp[ind:ind+msg_header_st_sz]
         ts, tp, sz = msg_header_st.unpack(decomp[ind:ind+msg_header_st_sz])
         ind += msg_header_st_sz
 
