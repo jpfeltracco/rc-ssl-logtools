@@ -5,14 +5,19 @@ import argparse
 
 import rc_ssl_logtools
 
-parser = argparse.ArgumentParser(description='Parse protobuf messages out of a log')
-parser.add_argument('file', type=str, help='time to start')
-parser.add_argument('-s', '--start-time', type=float, help='time to recording (sec)')
-parser.add_argument('-d', '--duration', type=float, help='duration of recording (sec)')
+from rc_ssl_logtools.proto.messages_robocup_ssl_refbox_log_pb2 import Log_Frame
+from rc_ssl_logtools.proto.messages_robocup_ssl_wrapper_pb2 import SSL_WrapperPacket
+
+parser = argparse.ArgumentParser(description="Parse protobuf messages out of a log")
+parser.add_argument("file", type=str, help="time to start")
+parser.add_argument("-s", "--start-time", type=float, help="time to recording (sec)")
+parser.add_argument("-d", "--duration", type=float, help="duration of recording (sec)")
+parser.add_argument("-n", "--no-print", action="store_true", help="don't print the packets, useful for debug")
 
 args = parser.parse_args()
 
 frames = rc_ssl_logtools.log_frames(args.file, args.start_time, args.duration)
 
-for f in frames:
-    print(f)
+if not args.no_print:
+    for f, _ in frames:
+        print(f)
