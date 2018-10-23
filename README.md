@@ -19,8 +19,8 @@ ssldump -s 0.0 -d 10.0 <rc_ssl_logfile.gz>
 
 import rc_ssl_logtools
 
-frames = rc_ssl_logtools.log_frames(args.file, args.start_time, args.duration)
+vision_frames, referee_frames = rc_ssl_logtools.log_frames(args.file, args.start_time, args.duration)
 
-for f in frames:
+for f in vision_frames:
     print(f)
 ```
