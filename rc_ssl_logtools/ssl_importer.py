@@ -9,7 +9,7 @@ from collections import OrderedDict
 
 from google.protobuf.message import DecodeError
 
-from rc_ssl_logtools.proto.messages_robocup_ssl_refbox_log_pb2 import Refbox_Log
+from rc_ssl_logtools.proto.messages_robocup_ssl_referee_pb2 import SSL_Referee as Referee
 from rc_ssl_logtools.proto.messages_robocup_ssl_wrapper_pb2 import SSL_WrapperPacket
 
 # From http://wiki.robocup.org/Small_Size_League/Game_Logs
@@ -55,7 +55,7 @@ def log_frames(ssl_log, start_time=None, duration=None):
     end_time_ns = None if duration is None else int((start_time + duration) * 1e9)
 
     vis_pb = SSL_WrapperPacket()
-    ref_pb = Refbox_Log()
+    ref_pb = Referee()
 
     # protobuf messages pulled from the log
     vis_msgs = []
@@ -85,18 +85,18 @@ def log_frames(ssl_log, start_time=None, duration=None):
                     vis_msgs.append(copy.deepcopy(vis_pb))
                 else:
                     print("Failed to parse vision packet!")
-            if tp == MESSAGE_SSL_REFBOX_2013:
+            elif tp == MESSAGE_SSL_REFBOX_2013:
                 msg_len = ref_pb.ParseFromString(msg_str)
                 if ref_pb.IsInitialized():
                     # Why do we keep receiving ref packets with empty log fields???
                     # the sizes of the messages are changing, so why on earth wouldn't
                     # we be seeing any data internally?
                     print(ref_pb.ListFields())
-                    print("Size of msg: {}".format(msg_len))
-                    print("Size of log: {}".format(len(ref_pb.log)))
                     ref_msgs.append(copy.deepcopy(ref_pb))
                 else:
                     print("Failed to parse referee packet!")
+            else:
+                print('Not sure what sort of packet I am looking at... Sorry')
 
             if (end_time_ns is not None) and (dt > end_time_ns): break
 
